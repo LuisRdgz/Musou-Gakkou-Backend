@@ -2,7 +2,10 @@ package com.example.MusouDB.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "curso")
@@ -37,7 +40,19 @@ public class Curso {
     @Column(name = "url_imagen_curso")
     private String urlImagenCurso;
 
-    // Constructor vacío
+    // ------ Relacion con resena 1:N
+    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL)
+    private List<Resena> resenas = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "usuarioTieneCursos")
+    List<Usuario> cursosTieneEstudiantes;
+
+    @ManyToMany(mappedBy = "ordenesTieneCursos")
+    List<Orden> cursoPerteneceOrden;
+    /*@ManyToMany(mappedBy = "cursos")
+    private List<Usuario> usuarios = new ArrayList<>();
+    // Constructor vacío*/
+
     public Curso() {
     }
 
@@ -127,6 +142,30 @@ public class Curso {
 
     public void setUrlImagenCurso(String urlImagenCurso) {
         this.urlImagenCurso = urlImagenCurso;
+    }
+
+    public List<Resena> getResenas() {
+        return resenas;
+    }
+
+    public void setResenas(List<Resena> resenas) {
+        this.resenas = resenas;
+    }
+
+    public List<Usuario> getCursosTieneEstudiantes() {
+        return cursosTieneEstudiantes;
+    }
+
+    public void setCursosTieneEstudiantes(List<Usuario> cursosTieneEstudiantes) {
+        this.cursosTieneEstudiantes = cursosTieneEstudiantes;
+    }
+
+    public List<Orden> getCursoPerteneceOrden() {
+        return cursoPerteneceOrden;
+    }
+
+    public void setCursoPerteneceOrden(List<Orden> cursoPerteneceOrden) {
+        this.cursoPerteneceOrden = cursoPerteneceOrden;
     }
 
     // toString

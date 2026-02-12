@@ -3,6 +3,7 @@ package com.example.MusouDB.model;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "orden")
@@ -18,6 +19,27 @@ public class Orden {
 
     @Column(name = "fecha_orden", nullable = false, columnDefinition = "DATETIME")
     private LocalDateTime fechaOrden;
+
+    // ------- Relacion con Usuario N:1
+    @ManyToOne
+    @JoinColumn(name = "orden_id_usuario") // FK
+    private Usuario usuario ;
+
+    // -------- Relacion con Cursos N:N
+    @ManyToMany
+    @JoinTable(
+            name = "ordenes_tiene_cursos",
+            joinColumns = @JoinColumn(name = "id_orden"),
+            inverseJoinColumns = @JoinColumn(name = "id_curso"))
+    Set<Curso> ordenesTieneCursos;
+
+    // -------- Relacion con Recursos N:N
+    @ManyToMany
+    @JoinTable(
+            name = "ordenes_tiene_recursos",
+            joinColumns = @JoinColumn(name = "id_orden"),
+            inverseJoinColumns = @JoinColumn(name = "id_recurso"))
+    Set<Recurso> ordenesTieneRecursos;
 
     // Constructor vacío
     public Orden() {
@@ -53,6 +75,30 @@ public class Orden {
 
     public void setFechaOrden(LocalDateTime fechaOrden) {
         this.fechaOrden = fechaOrden;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public Set<Curso> getOrdenesTieneCursos() {
+        return ordenesTieneCursos;
+    }
+
+    public void setOrdenesTieneCursos(Set<Curso> ordenesTieneCursos) {
+        this.ordenesTieneCursos = ordenesTieneCursos;
+    }
+
+    public Set<Recurso> getOrdenesTieneRecursos() {
+        return ordenesTieneRecursos;
+    }
+
+    public void setOrdenesTieneRecursos(Set<Recurso> ordenesTieneRecursos) {
+        this.ordenesTieneRecursos = ordenesTieneRecursos;
     }
 
     // toString

@@ -25,6 +25,16 @@ public class Resena {
     @Column(name = "contenido_resena", nullable = false)
     private String contenidoResena;
 
+    // ------- Relacion con Curso N:1
+    @ManyToOne
+    @JoinColumn(name = "resena_id_curso")// FK
+    private Curso curso;
+
+    // ------- Relacion con Usuario N:1
+    @ManyToOne
+    @JoinColumn(name = "resena_id_usuario")// FK
+    private Usuario usuario;
+
     // Constructor vacío
     public Resena() {
     }
@@ -78,6 +88,23 @@ public class Resena {
     public void setContenidoResena(String contenidoResena) {
         this.contenidoResena = contenidoResena;
     }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
 
     @Override
     public String toString() {

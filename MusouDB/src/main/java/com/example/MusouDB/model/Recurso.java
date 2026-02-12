@@ -1,7 +1,10 @@
 package com.example.MusouDB.model;
 
 import jakarta.persistence.*;
+
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "recurso")
@@ -27,6 +30,14 @@ public class Recurso {
     @Column(name = "url_imagen_recurso")
     private String urlImagenRecurso;
 
+    @ManyToMany(mappedBy = "usuarioTieneRecursos")
+    List<Usuario> recursoTieneUsuarios;
+
+    @ManyToMany(mappedBy = "ordenesTieneRecursos")
+    List<Orden> recursoPerteneceOrden;
+
+    /*@ManyToMany
+    Set<Orden> Orden;*/
     // Constructor vacío
     public Recurso() {
     }
@@ -89,6 +100,22 @@ public class Recurso {
 
     public void setUrlImagenRecurso(String urlImagenRecurso) {
         this.urlImagenRecurso = urlImagenRecurso;
+    }
+
+    public List<Usuario> getRecursoTieneUsuarios() {
+        return recursoTieneUsuarios;
+    }
+
+    public void setRecursoTieneUsuarios(List<Usuario> recursoTieneUsuarios) {
+        this.recursoTieneUsuarios = recursoTieneUsuarios;
+    }
+
+    public List<Orden> getRecursoPerteneceOrden() {
+        return recursoPerteneceOrden;
+    }
+
+    public void setRecursoPerteneceOrden(List<Orden> recursoPerteneceOrden) {
+        this.recursoPerteneceOrden = recursoPerteneceOrden;
     }
 
     // toString

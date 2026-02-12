@@ -1,7 +1,11 @@
 package com.example.MusouDB.model;
 
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "usuario")
@@ -29,6 +33,30 @@ public class Usuario {
 
     @Column(name = "rol_usuario", nullable = false)
     private Integer rolUsuario; // 1 - Alumno. 2 - Profesor. 3 - Admin
+
+    // ------ Relacion con order 1:N
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Orden> ordenes = new ArrayList<>();
+
+    // ------ Relacion con resena 1:N
+    @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
+    private List<Resena> resenas = new ArrayList<>();
+
+    // -------- Relacion con Cursos N:N
+    @ManyToMany
+    @JoinTable(
+            name = "usuario_tiene_cursos",
+            joinColumns = @JoinColumn(name = "id_usuario"),
+            inverseJoinColumns = @JoinColumn(name = "id_curso"))
+            List<Curso> usuarioTieneCursos;
+
+    // -------- Relacion con Recursos N:N
+    @ManyToMany
+    @JoinTable(
+            name = "usuario_tiene_recursos",
+            joinColumns = @JoinColumn(name = "id_usuario"),
+            inverseJoinColumns = @JoinColumn(name = "id_recurso"))
+    List<Recurso> usuarioTieneRecursos;
 
     // Constructor vacío (Obligatorio para JPA)
     public Usuario() {
@@ -102,6 +130,40 @@ public class Usuario {
     public void setRolUsuario(Integer rolUsuario) {
         this.rolUsuario = rolUsuario;
     }
+
+
+    public List<Orden> getOrdenes() {
+        return ordenes;
+    }
+
+    public void setOrdenes(List<Orden> ordenes) {
+        this.ordenes = ordenes;
+    }
+
+    public List<Resena> getResenas() {
+        return resenas;
+    }
+
+    public void setResenas(List<Resena> resenas) {
+        this.resenas = resenas;
+    }
+
+    public List<Curso> getUsuarioTieneCursos() {
+        return usuarioTieneCursos;
+    }
+
+    public void setUsuarioTieneCursos(List<Curso> usuarioTieneCursos) {
+        this.usuarioTieneCursos = usuarioTieneCursos;
+    }
+
+    public List<Recurso> getUsuarioTieneRecursos() {
+        return usuarioTieneRecursos;
+    }
+
+    public void setUsuarioTieneRecursos(List<Recurso> usuarioTieneRecursos) {
+        this.usuarioTieneRecursos = usuarioTieneRecursos;
+    }
+
 
     // Métodos de utilidad
     @Override

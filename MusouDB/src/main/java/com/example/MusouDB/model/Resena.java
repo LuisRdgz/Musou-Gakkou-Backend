@@ -1,103 +1,108 @@
 package com.example.MusouDB.model;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
 @Table(name = "resena")
 public class Resena {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_resena;
+    @Column(name = "id_resena")
+    private Long idResena;
 
-    @Column(nullable = false, columnDefinition = "DECIMAL(2,1)")
-    private Float valoracion_resena;
+    @Column(name = "valoracion_resena", nullable = false, columnDefinition = "DECIMAL(2,1)")
+    private Float valoracionResena;
 
-    @Column(nullable = false, columnDefinition = "DATETIME")
-    private LocalDateTime fecha_resena;
+    @Column(name = "fecha_resena", nullable = false, columnDefinition = "DATETIME")
+    private LocalDateTime fechaResena;
 
-    @Column(nullable = false, length = 45)
-    private String titulo_resena;
+    @Column(name = "titulo_resena", nullable = false, length = 45)
+    private String tituloResena;
 
-    @Column(nullable = false)
-    private String contenido_resena;
+    @Column(name = "contenido_resena", nullable = false)
+    private String contenidoResena;
 
-    //Coloque Llave Foranea faltante
-
-
-    public Resena(Long id_resena, Float valoracion_resena, LocalDateTime fecha_resena, String titulo_resena, String contenido_resena) {
-        this.id_resena = id_resena;
-        this.valoracion_resena = valoracion_resena;
-        this.fecha_resena = fecha_resena;
-        this.titulo_resena = titulo_resena;
-        this.contenido_resena = contenido_resena;
+    // Constructor vacío
+    public Resena() {
     }
 
-    public Resena(){
-
+    // Constructor con parámetros
+    public Resena(Long idResena, Float valoracionResena, LocalDateTime fechaResena, String tituloResena, String contenidoResena) {
+        this.idResena = idResena;
+        this.valoracionResena = valoracionResena;
+        this.fechaResena = fechaResena;
+        this.tituloResena = tituloResena;
+        this.contenidoResena = contenidoResena;
     }
 
-    public Long getId_resena() {
-        return id_resena;
+    // Getters y Setters
+    public Long getIdResena() {
+        return idResena;
     }
 
-    public void setId_resena(Long id_resena) {
-        this.id_resena = id_resena;
+    public void setIdResena(Long idResena) {
+        this.idResena = idResena;
     }
 
-    public Float getValoracion_resena() {
-        return valoracion_resena;
+    public Float getValoracionResena() {
+        return valoracionResena;
     }
 
-    public void setValoracion_resena(Float valoracion_resena) {
-        this.valoracion_resena = valoracion_resena;
+    public void setValoracionResena(Float valoracionResena) {
+        this.valoracionResena = valoracionResena;
     }
 
-    public LocalDateTime getFecha_resena() {
-        return fecha_resena;
+    public LocalDateTime getFechaResena() {
+        return fechaResena;
     }
 
-    public void setFecha_resena(LocalDateTime fecha_resena) {
-        this.fecha_resena = fecha_resena;
+    public void setFechaResena(LocalDateTime fechaResena) {
+        this.fechaResena = fechaResena;
     }
 
-    public String getTitulo_resena() {
-        return titulo_resena;
+    public String getTituloResena() {
+        return tituloResena;
     }
 
-    public void setTitulo_resena(String titulo_resena) {
-        this.titulo_resena = titulo_resena;
+    public void setTituloResena(String tituloResena) {
+        this.tituloResena = tituloResena;
     }
 
-    public String getContenido_resena() {
-        return contenido_resena;
+    public String getContenidoResena() {
+        return contenidoResena;
     }
 
-    public void setContenido_resena(String contenido_resena) {
-        this.contenido_resena = contenido_resena;
+    public void setContenidoResena(String contenidoResena) {
+        this.contenidoResena = contenidoResena;
     }
 
     @Override
     public String toString() {
         return "Resena{" +
-                "id_resena=" + id_resena +
-                ", valoracion_resena=" + valoracion_resena +
-                ", fecha_resena=" + fecha_resena +
-                ", titulo_resena='" + titulo_resena + '\'' +
-                ", contenido_resena='" + contenido_resena + '\'' +
+                "idResena=" + idResena +
+                ", valoracionResena=" + valoracionResena +
+                ", fechaResena=" + fechaResena +
+                ", tituloResena='" + tituloResena + '\'' +
+                ", contenidoResena='" + contenidoResena + '\'' +
                 '}';
     }
 
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
         if (!(o instanceof Resena resena)) return false;
-        return Objects.equals(id_resena, resena.id_resena) && Objects.equals(valoracion_resena, resena.valoracion_resena) && Objects.equals(fecha_resena, resena.fecha_resena) && Objects.equals(titulo_resena, resena.titulo_resena) && Objects.equals(contenido_resena, resena.contenido_resena);
+        return Objects.equals(idResena, resena.idResena) &&
+                Objects.equals(valoracionResena, resena.valoracionResena) &&
+                Objects.equals(fechaResena, resena.fechaResena) &&
+                Objects.equals(tituloResena, resena.tituloResena) &&
+                Objects.equals(contenidoResena, resena.contenidoResena);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id_resena, valoracion_resena, fecha_resena, titulo_resena, contenido_resena);
+        return Objects.hash(idResena, valoracionResena, fechaResena, tituloResena, contenidoResena);
     }
 }

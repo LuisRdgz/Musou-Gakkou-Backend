@@ -1,113 +1,125 @@
 package com.example.MusouDB.model;
 
 import jakarta.persistence.*;
-
 import java.util.Objects;
 
 @Entity
 @Table(name = "recurso")
 public class Recurso {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_recurso;
+    @Column(name = "id_recurso")
+    private Long idRecurso;
 
-    @Column(nullable = false, length = 45, unique = true)
-    private String nombre_recurso;
+    @Column(name = "nombre_recurso", nullable = false, length = 45, unique = true)
+    private String nombreRecurso;
 
-    @Column(nullable = false, columnDefinition = "DECIMAL(10,2)")
-    private Double costo_recurso;
+    @Column(name = "costo_recurso", nullable = false, columnDefinition = "DECIMAL(10,2)")
+    private Double costoRecurso;
 
-    @Column(nullable = false, length = 1000) //Comprobar que se ejecute correctamente
-    private String detalle_recurso;
+    @Column(name = "detalle_recurso", nullable = false, length = 1000)
+    private String detalleRecurso;
 
-    @Column(nullable = false)
-    private String descripcion_recurso;
+    @Column(name = "descripcion_recurso", nullable = false)
+    private String descripcionRecurso;
 
-    @Column()
-    private String urlImagen_recurso;
+    @Column(name = "url_imagen_recurso")
+    private String urlImagenRecurso;
 
-    public Recurso(Long id_recurso, String urlImagen_recurso, String descripcion_recurso, String detalle_recurso, Double costo_recurso, String nombre_recurso) {
-        this.id_recurso = id_recurso;
-        this.urlImagen_recurso = urlImagen_recurso;
-        this.descripcion_recurso = descripcion_recurso;
-        this.detalle_recurso = detalle_recurso;
-        this.costo_recurso = costo_recurso;
-        this.nombre_recurso = nombre_recurso;
+    // Constructor vacío
+    public Recurso() {
     }
 
-    public Recurso(){
-
+    // Constructor con parámetros
+    public Recurso(Long idRecurso, String nombreRecurso, Double costoRecurso,
+                   String detalleRecurso, String descripcionRecurso, String urlImagenRecurso) {
+        this.idRecurso = idRecurso;
+        this.nombreRecurso = nombreRecurso;
+        this.costoRecurso = costoRecurso;
+        this.detalleRecurso = detalleRecurso;
+        this.descripcionRecurso = descripcionRecurso;
+        this.urlImagenRecurso = urlImagenRecurso;
     }
 
-    public Long getId_recurso() {
-        return id_recurso;
+    // Getters y Setters
+    public Long getIdRecurso() {
+        return idRecurso;
     }
 
-    public void setId_recurso(Long id_recurso) {
-        this.id_recurso = id_recurso;
+    public void setIdRecurso(Long idRecurso) {
+        this.idRecurso = idRecurso;
     }
 
-    public String getNombre_recurso() {
-        return nombre_recurso;
+    public String getNombreRecurso() {
+        return nombreRecurso;
     }
 
-    public void setNombre_recurso(String nombre_recurso) {
-        this.nombre_recurso = nombre_recurso;
+    public void setNombreRecurso(String nombreRecurso) {
+        this.nombreRecurso = nombreRecurso;
     }
 
-    public Double getCosto_recurso() {
-        return costo_recurso;
+    public Double getCostoRecurso() {
+        return costoRecurso;
     }
 
-    public void setCosto_recurso(Double costo_recurso) {
-        this.costo_recurso = costo_recurso;
+    public void setCostoRecurso(Double costoRecurso) {
+        this.costoRecurso = costoRecurso;
     }
 
-    public String getDetalle_recurso() {
-        return detalle_recurso;
+    public String getDetalleRecurso() {
+        return detalleRecurso;
     }
 
-    public void setDetalle_recurso(String detalle_recurso) {
-        this.detalle_recurso = detalle_recurso;
+    public void setDetalleRecurso(String detalleRecurso) {
+        this.detalleRecurso = detalleRecurso;
     }
 
-    public String getDescripcion_recurso() {
-        return descripcion_recurso;
+    public String getDescripcionRecurso() {
+        return descripcionRecurso;
     }
 
-    public void setDescripcion_recurso(String descripcion_recurso) {
-        this.descripcion_recurso = descripcion_recurso;
+    public void setDescripcionRecurso(String descripcionRecurso) {
+        this.descripcionRecurso = descripcionRecurso;
     }
 
-    public String getUrlImagen_recurso() {
-        return urlImagen_recurso;
+    public String getUrlImagenRecurso() {
+        return urlImagenRecurso;
     }
 
-    public void setUrlImagen_recurso(String urlImagen_recurso) {
-        this.urlImagen_recurso = urlImagen_recurso;
+    public void setUrlImagenRecurso(String urlImagenRecurso) {
+        this.urlImagenRecurso = urlImagenRecurso;
     }
 
+    // toString
     @Override
     public String toString() {
         return "Recurso{" +
-                "id_recurso=" + id_recurso +
-                ", nombre_recurso='" + nombre_recurso + '\'' +
-                ", costo_recurso=" + costo_recurso +
-                ", detalle_recurso='" + detalle_recurso + '\'' +
-                ", descripcion_recurso='" + descripcion_recurso + '\'' +
-                ", urlImagen_recurso='" + urlImagen_recurso + '\'' +
+                "idRecurso=" + idRecurso +
+                ", nombreRecurso='" + nombreRecurso + '\'' +
+                ", costoRecurso=" + costoRecurso +
+                ", detalleRecurso='" + detalleRecurso + '\'' +
+                ", descripcionRecurso='" + descripcionRecurso + '\'' +
+                ", urlImagenRecurso='" + urlImagenRecurso + '\'' +
                 '}';
     }
 
+    // equals y hashCode
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
         if (!(o instanceof Recurso recurso)) return false;
-        return Objects.equals(id_recurso, recurso.id_recurso) && Objects.equals(nombre_recurso, recurso.nombre_recurso) && Objects.equals(costo_recurso, recurso.costo_recurso) && Objects.equals(detalle_recurso, recurso.detalle_recurso) && Objects.equals(descripcion_recurso, recurso.descripcion_recurso) && Objects.equals(urlImagen_recurso, recurso.urlImagen_recurso);
+        return Objects.equals(idRecurso, recurso.idRecurso) &&
+                Objects.equals(nombreRecurso, recurso.nombreRecurso) &&
+                Objects.equals(costoRecurso, recurso.costoRecurso) &&
+                Objects.equals(detalleRecurso, recurso.detalleRecurso) &&
+                Objects.equals(descripcionRecurso, recurso.descripcionRecurso) &&
+                Objects.equals(urlImagenRecurso, recurso.urlImagenRecurso);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id_recurso, nombre_recurso, costo_recurso, detalle_recurso, descripcion_recurso, urlImagen_recurso);
+        return Objects.hash(idRecurso, nombreRecurso, costoRecurso, detalleRecurso, descripcionRecurso, urlImagenRecurso);
     }
 }
 

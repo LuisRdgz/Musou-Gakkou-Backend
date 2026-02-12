@@ -1,76 +1,83 @@
 package com.example.MusouDB.model;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity
 @Table(name = "orden")
 public class Orden {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id_orden;
+    @Column(name = "id_orden")
+    private Long idOrden;
 
-    @Column(nullable = false, columnDefinition = "DECIMAL(10,2)")
-    private Double total_orden;
+    @Column(name = "total_orden", nullable = false, columnDefinition = "DECIMAL(10,2)")
+    private Double totalOrden;
 
-    @Column(nullable = false, columnDefinition = "DATETIME")
-    private LocalDateTime fecha_orden;
+    @Column(name = "fecha_orden", nullable = false, columnDefinition = "DATETIME")
+    private LocalDateTime fechaOrden;
 
-
-    public Orden(LocalDateTime fecha_orden, Double total_orden, Long id_orden) {
-        this.fecha_orden = fecha_orden;
-        this.total_orden = total_orden;
-        this.id_orden = id_orden;
+    // Constructor vacío
+    public Orden() {
     }
 
-    public Orden(){
-
+    // Constructor con parámetros
+    public Orden(Long idOrden, Double totalOrden, LocalDateTime fechaOrden) {
+        this.idOrden = idOrden;
+        this.totalOrden = totalOrden;
+        this.fechaOrden = fechaOrden;
     }
 
-    public Long getId_orden() {
-        return id_orden;
+    // Getters y Setters
+    public Long getIdOrden() {
+        return idOrden;
     }
 
-    public void setId_orden(Long id_orden) {
-        this.id_orden = id_orden;
+    public void setIdOrden(Long idOrden) {
+        this.idOrden = idOrden;
     }
 
-    public Double getTotal_orden() {
-        return total_orden;
+    public Double getTotalOrden() {
+        return totalOrden;
     }
 
-    public void setTotal_orden(Double total_orden) {
-        this.total_orden = total_orden;
+    public void setTotalOrden(Double totalOrden) {
+        this.totalOrden = totalOrden;
     }
 
-    public LocalDateTime getFecha_orden() {
-        return fecha_orden;
+    public LocalDateTime getFechaOrden() {
+        return fechaOrden;
     }
 
-    public void setFecha_orden(LocalDateTime fecha_orden) {
-        this.fecha_orden = fecha_orden;
+    public void setFechaOrden(LocalDateTime fechaOrden) {
+        this.fechaOrden = fechaOrden;
     }
 
+    // toString
     @Override
     public String toString() {
         return "Orden{" +
-                "id_orden=" + id_orden +
-                ", total_orden=" + total_orden +
-                ", fecha_orden=" + fecha_orden +
+                "idOrden=" + idOrden +
+                ", totalOrden=" + totalOrden +
+                ", fechaOrden=" + fechaOrden +
                 '}';
     }
 
+    // equals y hashCode
     @Override
     public boolean equals(Object o) {
+        if (this == o) return true;
         if (!(o instanceof Orden orden)) return false;
-        return Objects.equals(id_orden, orden.id_orden) && Objects.equals(total_orden, orden.total_orden) && Objects.equals(fecha_orden, orden.fecha_orden);
+        return Objects.equals(idOrden, orden.idOrden) &&
+                Objects.equals(totalOrden, orden.totalOrden) &&
+                Objects.equals(fechaOrden, orden.fechaOrden);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id_orden, total_orden, fecha_orden);
+        return Objects.hash(idOrden, totalOrden, fechaOrden);
     }
 }
 

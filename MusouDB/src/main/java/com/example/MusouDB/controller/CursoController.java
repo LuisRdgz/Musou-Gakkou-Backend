@@ -1,9 +1,7 @@
 package com.example.MusouDB.controller;
 
 import com.example.MusouDB.exceptions.CursoNotFoundException;
-import com.example.MusouDB.exceptions.UsuarioNotFoundException;
 import com.example.MusouDB.model.Curso;
-import com.example.MusouDB.model.Usuario;
 import com.example.MusouDB.service.CursoService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

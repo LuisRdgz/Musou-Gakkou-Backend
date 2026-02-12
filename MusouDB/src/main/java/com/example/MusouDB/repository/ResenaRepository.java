@@ -6,5 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ResenaRepository extends JpaRepository<Resena, Long> {
-
+    // JPQL -----
+    // No hay ninguno Unique entonces no se hace nada
 }

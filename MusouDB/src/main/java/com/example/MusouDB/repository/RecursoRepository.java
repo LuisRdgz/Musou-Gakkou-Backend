@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RecursoRepository extends JpaRepository<Recurso, Long> {
 
+    // Al ser único en la entidad, devuelve un solo objeto
+    Recurso findByNombreRecurso(String nombreRecurso);
 }

@@ -1,7 +1,8 @@
 package com.example.MusouDB.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -28,16 +29,16 @@ public class Curso {
     @Column(name = "modalidad_curso", nullable = false, length = 45)
     private String modalidadCurso;
 
-    @Column(name = "inicio_curso", nullable = false, columnDefinition = "DATETIME")
-    private LocalDateTime inicioCurso;
+    @Column(name = "inicio_curso", nullable = false, columnDefinition = "DATE")
+    private LocalDate inicioCurso;
 
-    @Column(name = "fin_curso", nullable = false, columnDefinition = "DATETIME")
-    private LocalDateTime finCurso;
+    @Column(name = "fin_curso", nullable = false, columnDefinition = "DATE")
+    private LocalDate finCurso;
 
     @Column(name = "costo_curso", nullable = false, columnDefinition = "DECIMAL(10,2)")
     private Double costoCurso;
 
-    @Column(name = "url_imagen_curso")
+    @Column(name = "url_imagen_curso", length = 1000)
     private String urlImagenCurso;
 
     // ------ Relacion con resena 1:N
@@ -58,7 +59,7 @@ public class Curso {
 
     // Constructor con parámetros
     public Curso(Long idCurso, String nombreCurso, String detalleCurso, String descripcionCurso,
-                 LocalDateTime inicioCurso, String modalidadCurso, LocalDateTime finCurso,
+                 LocalDate inicioCurso, String modalidadCurso, LocalDate finCurso,
                  Double costoCurso, String urlImagenCurso) {
         this.idCurso = idCurso;
         this.nombreCurso = nombreCurso;
@@ -112,19 +113,19 @@ public class Curso {
         this.modalidadCurso = modalidadCurso;
     }
 
-    public LocalDateTime getInicioCurso() {
+    public LocalDate getInicioCurso() {
         return inicioCurso;
     }
 
-    public void setInicioCurso(LocalDateTime inicioCurso) {
+    public void setInicioCurso(LocalDate inicioCurso) {
         this.inicioCurso = inicioCurso;
     }
 
-    public LocalDateTime getFinCurso() {
+    public LocalDate getFinCurso() {
         return finCurso;
     }
 
-    public void setFinCurso(LocalDateTime finCurso) {
+    public void setFinCurso(LocalDate finCurso) {
         this.finCurso = finCurso;
     }
 

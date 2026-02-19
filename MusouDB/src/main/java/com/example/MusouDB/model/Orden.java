@@ -1,5 +1,6 @@
 package com.example.MusouDB.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -22,6 +23,7 @@ public class Orden {
 
     // ------- Relacion con Usuario N:1
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name = "orden_id_usuario") // FK
     private Usuario usuario ;
 

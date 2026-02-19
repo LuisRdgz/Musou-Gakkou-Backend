@@ -1,5 +1,6 @@
 package com.example.MusouDB.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -46,10 +47,13 @@ public class Curso {
     private List<Resena> resenas = new ArrayList<>();
 
     @ManyToMany(mappedBy = "usuarioTieneCursos")
+    @JsonIgnore
     List<Usuario> cursosTieneEstudiantes;
 
     @ManyToMany(mappedBy = "ordenesTieneCursos")
+    @JsonIgnore
     List<Orden> cursoPerteneceOrden;
+
     /*@ManyToMany(mappedBy = "cursos")
     private List<Usuario> usuarios = new ArrayList<>();
     // Constructor vacío*/

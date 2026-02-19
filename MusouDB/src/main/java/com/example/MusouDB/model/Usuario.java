@@ -1,5 +1,6 @@
 package com.example.MusouDB.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -35,6 +36,7 @@ public class Usuario {
     private Integer rolUsuario; // 1 - Alumno. 2 - Profesor. 3 - Admin
 
     // ------ Relacion con order 1:N
+    @JsonManagedReference
     @OneToMany(mappedBy = "usuario", cascade = CascadeType.ALL)
     private List<Orden> ordenes = new ArrayList<>();
 

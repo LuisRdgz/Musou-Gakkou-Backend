@@ -1,5 +1,6 @@
 package com.example.MusouDB.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -31,9 +32,11 @@ public class Recurso {
     private String urlImagenRecurso;
 
     @ManyToMany(mappedBy = "usuarioTieneRecursos")
+    @JsonIgnore
     List<Usuario> recursoTieneUsuarios;
 
     @ManyToMany(mappedBy = "ordenesTieneRecursos")
+    @JsonIgnore
     List<Orden> recursoPerteneceOrden;
 
     /*@ManyToMany
